@@ -77,22 +77,22 @@ class MxGaussInit:
     self.mu = multi_to_numpy(mu)
 
 cdef extern from "./base/Util.h" namespace "HMM":
-        cdef MatrixXf InitPrior(int Q)
-        cdef MatrixXf InitTransmat(int Q)
-        cdef MatrixXf InitMixmat(int Q, int M)
+        cdef MatrixXf InitPrior(int Q, unsigned int init_rnd)
+        cdef MatrixXf InitTransmat(int Q, unsigned int init_rnd)
+        cdef MatrixXf InitMixmat(int Q, int M, unsigned int init_rnd)
 
-def init_prior(Q):
-        cdef MatrixXf m = InitPrior(Q)
+def init_prior(Q,init_rnd):
+        cdef MatrixXf m = InitPrior(Q,init_rnd)
         cdef np.ndarray newPrior = eigen_to_numpy(m)
         return newPrior
 
-def init_transmat(Q):
-        cdef MatrixXf m = InitTransmat(Q)
+def init_transmat(Q,init_rnd):
+        cdef MatrixXf m = InitTransmat(Q,init_rnd)
         return eigen_to_numpy(m)
 
 
-def init_mixmat(Q,M):
-        cdef MatrixXf m = InitMixmat(Q,M)
+def init_mixmat(Q,M,init_rnd):
+        cdef MatrixXf m = InitMixmat(Q,M,init_rnd)
         return eigen_to_numpy(m)
 
 cdef void set_matrix_element(MatrixXf& matrix, int row_index,

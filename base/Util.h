@@ -15,9 +15,9 @@
 namespace HMM {
 
 
-MatrixXf InitPrior(size_t Q, const std::string& filename = "");
-MatrixXf InitTransmat(size_t Q, const std::string& filename = "");
-MatrixXf InitMixmat(size_t Q, size_t M, const std::string& filename = "");
+MatrixXf InitPrior(size_t Q, size_t init_rnd, const std::string& filename = "");
+MatrixXf InitTransmat(size_t Q, size_t init_rnd, const std::string& filename = "");
+MatrixXf InitMixmat(size_t Q, size_t M, size_t init_rnd, const std::string& filename = "");
 
 
 } /* namespace HMM */
