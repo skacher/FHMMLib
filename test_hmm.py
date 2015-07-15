@@ -1,15 +1,17 @@
 from pylab import *
 from hmm import HMM, init_prior, init_transmat, init_mixmat, MxGaussInit
+import random
 
+random.seed()
 
 dimensions_count = 2  # O
 mixture_components_count = 1 # M
 steps_count = 100
 states_count = 4 #Q
 
-prior = init_prior(states_count);
-transmat = init_transmat(states_count);
-mixmat = init_mixmat(states_count,mixture_components_count);
+prior = init_prior(states_count, random.randint(0, 10**6) );
+transmat = init_transmat(states_count, random.randint(0, 10**6) );
+mixmat = init_mixmat(states_count,mixture_components_count, random.randint(0, 10**6) );
 #data = randn(steps_count, dimensions_count)
 data = randn(dimensions_count,steps_count)
 
