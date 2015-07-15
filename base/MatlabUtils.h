@@ -60,6 +60,7 @@ public:
 public:
 	double NormalizingConst;
 	MatrixXf Norm;
+	MatrixXd Norm2;
 };
 
 MatrixXf mkStochastic(const MatrixXf& t);

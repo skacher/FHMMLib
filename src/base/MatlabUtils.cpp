@@ -40,10 +40,13 @@ double generateGaussianNoise(double mu, double sigma)
 }
 
 
-Normalize::Normalize(const MatrixXf& in) : Norm(in) {
-	NormalizingConst = Norm.sum();
-	double s = NormalizingConst + double(NormalizingConst == 0);
-	Norm /= s;
+Normalize::Normalize(const MatrixXf& in) {
+	Norm2 = in.cast<double>();
+	NormalizingConst = Norm2.sum();
+	bool eq_zero = (fabs(NormalizingConst - 0.0) < std::numeric_limits<double>::min()) ;
+	double s = NormalizingConst + double(eq_zero);
+	Norm2 /= s;
+	Norm = Norm2.cast<float>();
 }
 double Normalize::getNormalizingConst() const {return NormalizingConst;}
 const MatrixXf& Normalize::getNorm() const {return Norm;}
